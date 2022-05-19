@@ -5,10 +5,14 @@ const initialValues = {
 };
 
 const favoriteReducer = (state = initialValues, action) => {
+  const doesMovieExist = state.favorites.some(
+    (el) => el?.imdbID === action.payload?.imdbID
+  );
   switch (action.type) {
     case ADD_FAVORITES:
       console.log("redux");
-      return { ...state, favorites: action.payload };
+      if (doesMovieExist) return state;
+      return { ...state, favorites: [...state.favorites, action.payload] };
     default:
       return state;
   }

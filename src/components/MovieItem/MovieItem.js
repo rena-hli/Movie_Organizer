@@ -1,10 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addFavAction } from "../../redux-manager/movie-item/actions";
 import "./MovieItem.css";
 
-function MovieItem({ Title, Year, Poster }) {
+function MovieItem(props) {
+  const { Title, Year, Poster } = props;
+
+  const dispatch = useDispatch();
+
   const addToFavorites = () => {
-    
-  }
+    dispatch(addFavAction(props));
+    console.log("here");
+  };
 
   return (
     <article className="movie-item">

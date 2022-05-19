@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { getFavSelector } from "../../redux-manager/movie-item/selector";
 import "./Favorites.css";
 
 function Favorites() {
   // const [title, setTitle] = useState("Новый список");
-  const [movies, setMovies] = useState([]);
   const [favoriteInput, setFavoriteInput] = useState("");
+
+  const favorites = useSelector(getFavSelector);
 
   const getInput = (e) => {
     setFavoriteInput(e.target.value);
@@ -19,10 +22,11 @@ function Favorites() {
         onChange={getInput}
       />
       <ul className="favorites__list">
-        {movies.map((item, i) => {
+        {favorites.map((item, imdbID) => {
           return (
-            <li key={i}>
-              {item.title} ({item.year})
+            <li key={imdbID}>
+              {item.Title} ({item.Year})
+              <button>X</button>
             </li>
           );
         })}

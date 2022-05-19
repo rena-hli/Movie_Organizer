@@ -1,7 +1,6 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 import { GET_MOVIE } from "../constants";
 import { setMovieAction } from "./actions";
-// import { getMoviesSelector } from "./selector";
 import { fetchMovies } from "../REST";
 
 function* workerMovie(action) {

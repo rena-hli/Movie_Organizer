@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import MovieItem from "../MovieItem/MovieItem";
+import { useSelector } from "react-redux";
 import { getMoviesSelector } from "../../redux-manager/movies/selector";
 import "./Movies.css";
 
