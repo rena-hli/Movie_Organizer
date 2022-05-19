@@ -1,8 +1,8 @@
 import { all, call } from "redux-saga/effects";
-import cartSaga from "./movies/saga";
+import movieSaga from "./movies/saga";
 
 function* rootSaga() {
-  yield all([call(cartSaga)]);
+  yield all([call(movieSaga)]);
 }
 
 export default rootSaga;

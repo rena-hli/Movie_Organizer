@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getMovieAction } from "../../redux-manager/movies/actions";
 import "./SearchBox.css";
 
 function SearchBox() {
-  const [searchLine, setSearchLineChangeHandler] = useState("");
+  const dispatch = useDispatch();
 
-  const onChange = (e) => {
-    setSearchLineChangeHandler(e.target.value);
+  const [searchLine, setSearchLine] = useState("");
+
+  const searchLineChangeHandler = (e) => {
+    setSearchLine(e.target.value);
   };
 
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
+    dispatch(getMovieAction(searchLine));
   };
 
   return (
@@ -22,7 +27,7 @@ function SearchBox() {
             type="text"
             className="search-box__form-input"
             placeholder="Например, Shawshank Redemption"
-            onChange={onChange}
+            onChange={searchLineChangeHandler}
           />
         </label>
         <button

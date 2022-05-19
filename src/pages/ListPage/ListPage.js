@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ListPage.css";
 
 function ListPage() {
-  const [movies] = useState([
-    { title: "The Godfather", year: 1972, imdbID: "tt0068646" },
-  ]);
+  const [movies] = useState([]);
 
   const params = useParams();
 

@@ -3,9 +3,7 @@ import "./Favorites.css";
 
 function Favorites() {
   // const [title, setTitle] = useState("Новый список");
-  const [movies, setMovies] = useState([
-    { imdbID: "tt0068646", title: "The Godfather", year: 1972 },
-  ]);
+  const [movies, setMovies] = useState([]);
   const [favoriteInput, setFavoriteInput] = useState("");
 
   const getInput = (e) => {

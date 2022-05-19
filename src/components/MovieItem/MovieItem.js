@@ -1,29 +1,22 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import {
-  getMovieAction,
-  setMovieAction,
-} from "../../redux-manager/movies/actions";
 import "./MovieItem.css";
 
-function MovieItem({ title, year, poster }) {
-  const dispatch = useDispatch();
-
-  const addToCart = () => {
-    dispatch(getMovieAction("please, work"));
-  };
+function MovieItem({ Title, Year, Poster }) {
+  const addToFavorites = () => {
+    
+  }
 
   return (
     <article className="movie-item">
-      <img className="movie-item__poster" src={poster} alt={title} />
+      <img className="movie-item__poster" src={Poster} alt={Title} />
       <div className="movie-item__info">
         <h3 className="movie-item__title">
-          {title}&nbsp;({year})
+          {Title}&nbsp;({Year})
         </h3>
         <button
           type="button"
           className="movie-item__add-button"
-          onClick={addToCart}
+          onClick={addToFavorites}
         >
           Добавить в список
         </button>
