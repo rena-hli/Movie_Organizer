@@ -7,7 +7,6 @@ const initialValues = {
 const movieReducer = (state = initialValues, action) => {
   switch (action.type) {
     case SET_MOVIE:
-      console.log("redux");
       return { ...state, movies: action.payload };
     default:
       return state;

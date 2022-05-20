@@ -1,39 +1,68 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getFavSelector } from "../../redux-manager/movie-item/selector";
 import "./Favorites.css";
+import { deleteFavAction } from "../../redux-manager/movie-item/actions";
+import { Link } from "react-router-dom";
 
 function Favorites() {
-  // const [title, setTitle] = useState("Новый список");
-  const [favoriteInput, setFavoriteInput] = useState("");
+  const [title, setTitle] = useState("");
+
+  const [isClicked, setClicked] = useState(false);
 
   const favorites = useSelector(getFavSelector);
 
   const getInput = (e) => {
-    setFavoriteInput(e.target.value);
+    setTitle(e.target.value);
+  };
+
+  const saveFavMovie = () => {
+    setClicked(true);
+  };
+
+  const dispatch = useDispatch();
+
+  const deleteMovie = (e) => {
+    dispatch(deleteFavAction(e.target.id));
   };
 
   return (
     <div className="favorites">
       <input
-        value={favoriteInput}
         placeholder="Новый список"
         className="favorites__name"
         onChange={getInput}
       />
       <ul className="favorites__list">
-        {favorites.map((item, imdbID) => {
+        {favorites.map((item) => {
           return (
-            <li key={imdbID}>
+            <li key={item.imdbID}>
               {item.Title} ({item.Year})
-              <button>X</button>
+              <button
+                onClick={deleteMovie}
+                id={item.imdbID}
+                className="delete-button"
+              >
+                X
+              </button>
             </li>
           );
         })}
       </ul>
-      <button type="button" className="favorites__save">
-        Сохранить список
-      </button>
+      {isClicked ? (
+        <Link to="/list/:id">Перейти к списку</Link>
+      ) : (
+        <button
+          type="button"
+          className={`favorites__save ${
+            !(title && favorites[0]) && "disabled"
+          }`}
+          onClick={saveFavMovie}
+          disabled={!(title && favorites[0])}
+        >
+          Сохранить список
+        </button>
+      )}
     </div>
   );
 }

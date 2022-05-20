@@ -10,7 +10,6 @@ function MovieItem(props) {
 
   const addToFavorites = () => {
     dispatch(addFavAction(props));
-    console.log("here");
   };
 
   return (
