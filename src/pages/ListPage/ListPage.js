@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import { getFavSelector } from "../../redux-manager/movie-item/selector";
 import "./ListPage.css";
 
 function ListPage() {
-  const [movies] = useState([]);
-
   const params = useParams();
+  const favorites = useSelector(getFavSelector);
 
   useEffect(() => {
     console.log(params.id);
 
     // dispatch from UI -> saga -> redux -> dispatch from UI
-    // TODO: запрос к сервер на получение списка
-    // TODO: запросы к серверу по всем imdbID
   });
 
   return (
     <div className="list-page">
       <h1 className="list-page__title">Мой список</h1>
       <ul>
-        {movies.map((item) => {
+        {favorites.map((item) => {
           return (
             <li key={item.imdbID}>
-              <a href="https://www.imdb.com/title/tt0068646/" target="_blank">
-                {item.title} ({item.year})
+              <a
+                href={`https://www.imdb.com/title/${item.imdbID}/`}
+                target="_blank"
+              >
+                {item.Title} ({item.Year})
               </a>
             </li>
           );

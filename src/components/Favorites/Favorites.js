@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFavSelector } from "../../redux-manager/movie-item/selector";
 import "./Favorites.css";
-import { deleteFavAction } from "../../redux-manager/movie-item/actions";
+import {
+  deleteFavAction,
+  saveFavAction,
+} from "../../redux-manager/movie-item/actions";
 import { Link } from "react-router-dom";
 
 function Favorites() {
@@ -12,15 +15,16 @@ function Favorites() {
 
   const favorites = useSelector(getFavSelector);
 
+  const dispatch = useDispatch();
+
   const getInput = (e) => {
     setTitle(e.target.value);
   };
 
   const saveFavMovie = () => {
+    dispatch(saveFavAction(title));
     setClicked(true);
   };
-
-  const dispatch = useDispatch();
 
   const deleteMovie = (e) => {
     dispatch(deleteFavAction(e.target.id));

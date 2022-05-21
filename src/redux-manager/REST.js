@@ -29,7 +29,7 @@ export const sendFavorites = async (favoritListName, filmList) => {
 
 export const getFavoritesList = async (payload) => {
   const response = await fetch(
-    `http://www.omdbapi.com/?s=${payload}&apikey=b14a1940`
+    `http://www.omdbapi.com/?s=${payload}&apikey=730b0d5a`
   );
   const data = await response.json();
 
