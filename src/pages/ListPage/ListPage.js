@@ -2,21 +2,17 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getFavSelector } from "../../redux-manager/movie-item/selector";
+import { saveFavAction } from "../../redux-manager/movie-item/actions";
 import "./ListPage.css";
 
 function ListPage() {
   const params = useParams();
   const favorites = useSelector(getFavSelector);
-
-  useEffect(() => {
-    console.log(params.id);
-
-    // dispatch from UI -> saga -> redux -> dispatch from UI
-  });
+  const favoritesTitle = useSelector(saveFavAction);
 
   return (
     <div className="list-page">
-      <h1 className="list-page__title">Мой список</h1>
+      <h1 className="list-page__title">{favoritesTitle.payload}</h1>
       <ul>
         {favorites.map((item) => {
           return (
